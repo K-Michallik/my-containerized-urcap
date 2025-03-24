@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
     templateUrl: './Container-Application.component.html',
     styleUrls: ['./Container-Application.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false,
 })
 export class ContainerApplicationComponent implements ApplicationPresenter, OnChanges {
     // applicationAPI is optional
@@ -42,7 +43,6 @@ export class ContainerApplicationComponent implements ApplicationPresenter, OnCh
             if (changes?.robotSettings?.isFirstChange()) {
                 if (changes?.robotSettings?.currentValue) {
                     this.translateService.use(changes?.robotSettings?.currentValue?.language);
-                    this.backendHttpUrl = this.applicationAPI.getContainerContributionURL(VENDOR_ID, URCAP_ID, 'my-containerized-urcap-backend', 'rest-api');
                 }
                 this.translateService.setDefaultLang('en');
             }
@@ -53,10 +53,14 @@ export class ContainerApplicationComponent implements ApplicationPresenter, OnCh
                 .subscribe(() => {
                     this.cd.detectChanges();
                 });
+
+            this.backendHttpUrl = this.applicationAPI.getContainerContributionURL(VENDOR_ID, URCAP_ID, 'my-containerized-urcap-backend', 'rest-api');
         }
     }
 
     getRandomNumber(): void {
+        console.log(`Backend url is: ${this.backendHttpUrl}`);
+        console.log(`URL from API is: ${this.applicationAPI.getContainerContributionURL(VENDOR_ID, URCAP_ID, 'my-containerized-urcap-backend', 'rest-api')}`);
         this.beService.fetchRandomNumber(this.backendHttpUrl);
     }
 
@@ -85,7 +89,7 @@ export class ContainerApplicationComponent implements ApplicationPresenter, OnCh
           },
         });
       }
-      
+
     onImageLoad(): void {
         if (this.imageDataUrl) {
           URL.revokeObjectURL(this.imageDataUrl);
