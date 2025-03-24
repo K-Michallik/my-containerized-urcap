@@ -1,0 +1,10 @@
+{
+  "application": {
+    "nodes": {
+      "urcaps-r-us-my-containerized-urcap-container-application": {
+        "title": "Container Application",
+        "supportiveText": "Container Application - Supportive Text"
+      }
+    }
+  }
+}

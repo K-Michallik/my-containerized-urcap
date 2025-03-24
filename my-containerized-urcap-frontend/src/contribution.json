@@ -1,0 +1,12 @@
+{
+  "applicationNodes": [
+    {
+      "translationPath": "assets/i18n/",
+      "behaviorURI": "Container-Application.worker.js",
+      "presenterURI": "main.js",
+      "componentTagName": "urcaps-r-us-my-containerized-urcap-container-application"
+    }
+  ],
+  "programNodes": [],
+  "smartSkills": []
+}

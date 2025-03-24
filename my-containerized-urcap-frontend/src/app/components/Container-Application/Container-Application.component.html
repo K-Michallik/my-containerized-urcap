@@ -1,0 +1,18 @@
+<div *ngIf="applicationNode" class="component">
+    <div class="section">
+        <ur-button (handleClick)="getRandomNumber()">Get Random number</ur-button>
+        @if (randomNumber$ | async; as num) {
+            <p><strong>Random Number:</strong> {{ num }}</p>
+        }
+        <ur-button (handleClick)="getTestResponse()">Test</ur-button>
+        <ur-button (handleClick)="fetchImage()">Fetch Image</ur-button>
+    </div>
+    <div class="section">
+        @if(imageDataUrl){
+            <img [src]="imageDataUrl" alt="Fetched Image" (load)="onImageLoad()"/>
+        }
+        @else {
+            <p>{{ error }}</p>
+        }
+    </div>
+</div>

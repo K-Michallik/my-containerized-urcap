@@ -1,0 +1,25 @@
+metadata:
+  vendorID: "urcaps-r-us"
+  urcapID: "my-containerized-urcap"
+  vendorName: "urcaps-r-us"
+  urcapName: "my-containerized-urcap"
+  version: 1.0.0
+artifacts:
+  webArchives:
+  - id: "my-containerized-urcap-frontend"
+    folder: "my-containerized-urcap-frontend"
+    # devUrl: http://host.gateway.ip:4200/
+  containers:
+  - id: "my-containerized-urcap-backend"
+    image: "my-containerized-urcap-backend:latest"
+    services:
+      - service: urcontrol-rtde
+    ingress:
+      - id: rest-api
+        protocol: http
+        containerPort: 50052
+        proxyUrl: /
+        # devUrl: http://host.gateway.ip:50052/
+    # mounts:
+    #   - mount: tmpfs:/tmp
+    #     access: rw
